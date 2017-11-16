@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: epic-rabbitmq
+spec:
+  ports:
+    - port: 15672
+      targetPort: 15672
+      protocol: TCP
+      nodePort: 30130
+      name: management-web
+    - port: 5672
+      targetPort: 5672
+      nodePort: 30133
+      name: api
+  type: NodePort
+  selector:
+    cluster-name: rabbitmq-cluster
